@@ -2,6 +2,12 @@
 
 Build awesome, cloud-based web applications in a fraction of the time!
 
+## 3.0 is coming!
+
+CloudFusion 3.0 is a pretty sizable update and is coming very soon. If you're thinking about patching some aspect of CloudFusion and submitting it as a contribution, hang onto your shorts. Chances are, I've already fixed it.
+
+Keep an eye on the [3.0 Milestone](http://code.google.com/p/tarzan-aws/issues/list?q=label:Milestone-3.0) to get a sense of how much I have left to do -- it's not much at all! :)
+
 ## Requirements
 
 * PHP 5.1.4 or newer (PHP 5.2+ recommended)

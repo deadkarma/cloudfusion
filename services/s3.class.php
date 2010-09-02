@@ -1287,7 +1287,14 @@ class AmazonS3 extends CloudFusion
  	 *
 	 * Parameters:
 	 * 	bucket - _string_ (Required) The name of the bucket to be used.
-	 * 	pcre - _string_ (Optional) A Perl-Compatible Regular Expression (PCRE) to filter the names against. Defaults to <S3_PCRE_ALL>.
+	 * 
+	 * Keys for the $opt parameter:
+	 * 	prefix - _string_ (Optional) Restricts the response to only contain results that begin with the specified prefix.
+	 * 	marker - _string_ (Optional) It restricts the response to only contain results that occur alphabetically after the value of marker.
+	 * 	maxKeys - _string_ (Optional) Limits the number of results returned in response to your query. Will return no more than this number of results, but possibly less.
+	 * 	delimiter - _string_ (Optional) Unicode string parameter. Keys that contain the same string between the prefix and the first occurrence of the delimiter will be rolled up into a single result element in the CommonPrefixes collection.
+	 * 	pcre - _string_ (Optional) A Perl-Compatible Regular Expression (PCRE) to filter the names against. This is applied AFTER any native S3 filtering from 'prefix', 'marker', 'maxKeys', or 'delimiter'.
+	 * 	returnCurlHandle - _boolean_ (Optional) A private toggle that will return the CURL handle for the request rather than actually completing the request. This is useful for MultiCURL requests.
 	 *
 	 * Returns:
 	 * 	_boolean_ Determines the success of deleting all files.
@@ -1295,10 +1302,10 @@ class AmazonS3 extends CloudFusion
 	 * See Also:
 	 * 	Related - <delete_object()>
 	 */
-	public function delete_all_objects($bucket, $pcre = S3_PCRE_ALL)
+	public function delete_all_objects($bucket, $opt)
 	{
 		// Collect all matches
-		$list = $this->get_object_list($bucket, array('pcre' => $pcre));
+		$list = $this->get_object_list($bucket, $opt);
 
 		// As long as we have at least one match...
 		if (count($list) > 0)
